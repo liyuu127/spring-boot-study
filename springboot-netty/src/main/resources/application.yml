@@ -1,0 +1,41 @@
+server:
+  port: 9000
+  servlet:
+    context-path: /
+
+hcat:
+  tmpdir: D:/temp/
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/hchat?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456
+    hikari:
+      connection-timeou: 30000
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+
+#Mybatis配置
+mybatis:
+  type-aliases-package: cn.liyu.springbootnetty.pojo
+  mapper-locations: classpath:mapper/*.xml
+
+#整合FASTDFS
+fdfs:
+  soTimeout: 1501
+  connectTimeout: 601
+  thumbImage: #缩略图生成参数
+    width: 150
+    height: 150
+  trackerList[0]: 192.168.25.133:22122 #TrackerList参数,支持多个
+  httpurl: http://192.168.25.133/ #HTTP URL
+
+#日志级别管理
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'loggers'

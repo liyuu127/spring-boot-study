@@ -1,0 +1,7 @@
+spring:
+  mail:
+    host: smtp.126.com
+    username: liyu0969@126.com
+    password: yu4433521yu
+  jackson:
+    default-property-inclusion: non_null

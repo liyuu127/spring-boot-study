@@ -1,0 +1,4 @@
+com\itmuch\mybatis\controller\UserController.class
+com\itmuch\mybatis\MybatisApplication.class
+com\itmuch\mybatis\mapper\UserMapper.class
+com\itmuch\mybatis\entity\User.class
