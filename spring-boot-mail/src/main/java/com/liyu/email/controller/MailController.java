@@ -1,4 +1,4 @@
-package com.itmuch.email.controller;
+package com.liyu.email.controller;
 
 import com.liyu.model.ResponseEnum;
 import com.liyu.model.ResponseModel;
@@ -143,8 +143,8 @@ public class MailController {
         messageHelper.setSubject("基于freemarker模板的邮件测试");
 
         Map<String, Object> model = new HashMap<>();
-        model.put("username", "itmuch");
-        model.put("event", "IT牧场大事件");
+        model.put("username", "liyu");
+        model.put("event", "事件");
 
         String content = FreeMarkerTemplateUtils.processTemplateIntoString(
                 this.freemarkerConfiguration.getTemplate("mail.ftl"), model);

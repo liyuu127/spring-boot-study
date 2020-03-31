@@ -1,7 +1,5 @@
-package com.itmuch.email;
+package com.liyu.email;
 
-import com.liyu.model.ResponseEnum;
-import com.liyu.model.ResponseModel;
 import freemarker.template.Configuration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
