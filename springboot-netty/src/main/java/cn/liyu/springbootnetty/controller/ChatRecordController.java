@@ -33,7 +33,7 @@ public class ChatRecordController {
             return chatRecordService.findUnreadByUserid(userid);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ArrayList<TbChatRecord>();
+            return new ArrayList<>();
         }
     }
 }
