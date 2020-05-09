@@ -1,0 +1,14 @@
+server:
+  port: 8080
+#spring.data.mongodb.uri=mongodb://127.0.0.1:27017/test
+#设置了密码
+spring:
+  data:
+    mongodb:
+#      uri: mongodb://mongoadmin:secret@192.168.35.187:27017/test
+      host: 192.168.35.187
+      port: 27017
+      database: test
+      authentication-database: admin
+      username: mongoadmin
+      password: secret

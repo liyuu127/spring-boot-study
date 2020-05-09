@@ -27,6 +27,7 @@
         <module>springboot-kafka</module>
         <module>springboot-filter-interceptor</module>
         <module>springboot-schedule</module>
+        <module>springboot-mongodb</module>
     </modules>
 
     <dependencies>
