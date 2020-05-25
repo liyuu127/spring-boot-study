@@ -1,4 +1,4 @@
-package com.liyu.model;
+package com.liyu.email.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

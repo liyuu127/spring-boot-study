@@ -1,7 +1,8 @@
 package com.liyu.email.controller;
 
-import com.liyu.model.ResponseEnum;
-import com.liyu.model.ResponseModel;
+import com.liyu.email.model.ResponseEnum;
+import com.liyu.email.model.ResponseModel;
+
 import freemarker.template.Configuration;
 import freemarker.template.TemplateException;
 import lombok.extern.slf4j.Slf4j;

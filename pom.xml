@@ -15,10 +15,8 @@
     </parent>
     <modules>
         <module>spring-boot-mail</module>
-        <module>spring-boot-mybatis-optional</module>
         <module>spring-boot-actuator-prometheus-grafana</module>
         <module>spring-boot-dubbo-nacos</module>
-        <module>spring-boot-common</module>
         <module>springboot-mybatis-druid-pagehelper</module>
         <module>springboot-redis-mq</module>
         <module>springboot-rabbitmq</module>

@@ -35,11 +35,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <version>1.5.10.RELEASE</version>
         </dependency>
-        <dependency>
-            <groupId>com.itmuch.boot</groupId>
-            <artifactId>spring-boot-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 
     <build>
