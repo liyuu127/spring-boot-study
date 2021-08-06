@@ -24,8 +24,9 @@
         <module>springboot-netty</module>
         <module>springboot-kafka</module>
         <module>springboot-filter-interceptor</module>
-        <module>springboot-schedule</module>
         <module>springboot-mongodb</module>
+        <module>spring-batch-start</module>
+        <module>springboot-jwt</module>
     </modules>
 
     <dependencies>

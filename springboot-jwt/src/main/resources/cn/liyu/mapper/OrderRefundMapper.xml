@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.liyu.mapper.OrderRefundMapper">
+  <resultMap id="BaseResultMap" type="cn.liyu.model.OrderRefund">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="refund_status" jdbcType="SMALLINT" property="refundStatus" />
+    <result column="refund_money" jdbcType="INTEGER" property="refundMoney" />
+    <result column="refund_time" jdbcType="TIMESTAMP" property="refundTime" />
+    <result column="refund_msg" jdbcType="VARCHAR" property="refundMsg" />
+    <result column="refund_number" jdbcType="VARCHAR" property="refundNumber" />
+    <result column="refund_trade_no" jdbcType="VARCHAR" property="refundTradeNo" />
+    <result column="service_money" jdbcType="INTEGER" property="serviceMoney" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="deleted" jdbcType="TINYINT" property="deleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, order_id, refund_status, refund_money, refund_time, refund_msg, refund_number, 
+    refund_trade_no, service_money, remark, created_at, updated_at, deleted
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update order_refund
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="order_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.orderId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="refund_status = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.refundStatus,jdbcType=SMALLINT}
+        </foreach>
+      </trim>
+      <trim prefix="refund_money = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.refundMoney,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="refund_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.refundTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="refund_msg = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.refundMsg,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="refund_number = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.refundNumber,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="refund_trade_no = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.refundTradeNo,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="service_money = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.serviceMoney,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="remark = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.remark,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="created_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.createdAt,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="updated_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.updatedAt,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="deleted = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.deleted,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into order_refund
+    (order_id, refund_status, refund_money, refund_time, refund_msg, refund_number, refund_trade_no, 
+      service_money, remark, created_at, updated_at, deleted)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.orderId,jdbcType=INTEGER}, #{item.refundStatus,jdbcType=SMALLINT}, #{item.refundMoney,jdbcType=INTEGER}, 
+        #{item.refundTime,jdbcType=TIMESTAMP}, #{item.refundMsg,jdbcType=VARCHAR}, #{item.refundNumber,jdbcType=VARCHAR}, 
+        #{item.refundTradeNo,jdbcType=VARCHAR}, #{item.serviceMoney,jdbcType=INTEGER}, 
+        #{item.remark,jdbcType=VARCHAR}, #{item.createdAt,jdbcType=TIMESTAMP}, #{item.updatedAt,jdbcType=TIMESTAMP}, 
+        #{item.deleted,jdbcType=TINYINT})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="cn.liyu.model.OrderRefund" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into order_refund
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      order_id,
+      refund_status,
+      refund_money,
+      refund_time,
+      refund_msg,
+      refund_number,
+      refund_trade_no,
+      service_money,
+      remark,
+      created_at,
+      updated_at,
+      deleted,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      #{orderId,jdbcType=INTEGER},
+      #{refundStatus,jdbcType=SMALLINT},
+      #{refundMoney,jdbcType=INTEGER},
+      #{refundTime,jdbcType=TIMESTAMP},
+      #{refundMsg,jdbcType=VARCHAR},
+      #{refundNumber,jdbcType=VARCHAR},
+      #{refundTradeNo,jdbcType=VARCHAR},
+      #{serviceMoney,jdbcType=INTEGER},
+      #{remark,jdbcType=VARCHAR},
+      #{createdAt,jdbcType=TIMESTAMP},
+      #{updatedAt,jdbcType=TIMESTAMP},
+      #{deleted,jdbcType=TINYINT},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      order_id = #{orderId,jdbcType=INTEGER},
+      refund_status = #{refundStatus,jdbcType=SMALLINT},
+      refund_money = #{refundMoney,jdbcType=INTEGER},
+      refund_time = #{refundTime,jdbcType=TIMESTAMP},
+      refund_msg = #{refundMsg,jdbcType=VARCHAR},
+      refund_number = #{refundNumber,jdbcType=VARCHAR},
+      refund_trade_no = #{refundTradeNo,jdbcType=VARCHAR},
+      service_money = #{serviceMoney,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=TINYINT},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="cn.liyu.model.OrderRefund" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into order_refund
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="refundStatus != null">
+        refund_status,
+      </if>
+      <if test="refundMoney != null">
+        refund_money,
+      </if>
+      <if test="refundTime != null">
+        refund_time,
+      </if>
+      <if test="refundMsg != null">
+        refund_msg,
+      </if>
+      <if test="refundNumber != null">
+        refund_number,
+      </if>
+      <if test="refundTradeNo != null">
+        refund_trade_no,
+      </if>
+      <if test="serviceMoney != null">
+        service_money,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="refundStatus != null">
+        #{refundStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="refundMoney != null">
+        #{refundMoney,jdbcType=INTEGER},
+      </if>
+      <if test="refundTime != null">
+        #{refundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundMsg != null">
+        #{refundMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="refundNumber != null">
+        #{refundNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="refundTradeNo != null">
+        #{refundTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceMoney != null">
+        #{serviceMoney,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="refundStatus != null">
+        refund_status = #{refundStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="refundMoney != null">
+        refund_money = #{refundMoney,jdbcType=INTEGER},
+      </if>
+      <if test="refundTime != null">
+        refund_time = #{refundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundMsg != null">
+        refund_msg = #{refundMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="refundNumber != null">
+        refund_number = #{refundNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="refundTradeNo != null">
+        refund_trade_no = #{refundTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceMoney != null">
+        service_money = #{serviceMoney,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

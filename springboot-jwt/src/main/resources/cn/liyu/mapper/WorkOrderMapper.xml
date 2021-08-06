@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.liyu.mapper.WorkOrderMapper">
+  <resultMap id="BaseResultMap" type="cn.liyu.model.WorkOrder">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="line_id" jdbcType="INTEGER" property="lineId" />
+    <result column="line_name" jdbcType="VARCHAR" property="lineName" />
+    <result column="driver_id" jdbcType="INTEGER" property="driverId" />
+    <result column="vehicle_id" jdbcType="INTEGER" property="vehicleId" />
+    <result column="vehicle_number" jdbcType="VARCHAR" property="vehicleNumber" />
+    <result column="real_start_time" jdbcType="TIMESTAMP" property="realStartTime" />
+    <result column="predict_start_time" jdbcType="TIMESTAMP" property="predictStartTime" />
+    <result column="real_end_time" jdbcType="TIMESTAMP" property="realEndTime" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="error_status" jdbcType="SMALLINT" property="errorStatus" />
+    <result column="error_info" jdbcType="VARCHAR" property="errorInfo" />
+    <result column="vehicle_plan_id" jdbcType="INTEGER" property="vehiclePlanId" />
+    <result column="start_station_id" jdbcType="INTEGER" property="startStationId" />
+    <result column="start_station_name" jdbcType="VARCHAR" property="startStationName" />
+    <result column="end_station_id" jdbcType="INTEGER" property="endStationId" />
+    <result column="end_station_name" jdbcType="VARCHAR" property="endStationName" />
+    <result column="merchant_id" jdbcType="INTEGER" property="merchantId" />
+    <result column="first_arrive_time" jdbcType="TIMESTAMP" property="firstArriveTime" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="deleted" jdbcType="TINYINT" property="deleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, line_id, line_name, driver_id, vehicle_id, vehicle_number, real_start_time, predict_start_time, 
+    real_end_time, `status`, error_status, error_info, vehicle_plan_id, start_station_id, 
+    start_station_name, end_station_id, end_station_name, merchant_id, first_arrive_time, 
+    created_at, updated_at, deleted
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update work_order
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="line_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.lineId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="line_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.lineName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="driver_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.driverId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="vehicle_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.vehicleId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="vehicle_number = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.vehicleNumber,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="real_start_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.realStartTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="predict_start_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.predictStartTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="real_end_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.realEndTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.status,jdbcType=SMALLINT}
+        </foreach>
+      </trim>
+      <trim prefix="error_status = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.errorStatus,jdbcType=SMALLINT}
+        </foreach>
+      </trim>
+      <trim prefix="error_info = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.errorInfo,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="vehicle_plan_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.vehiclePlanId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="start_station_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.startStationId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="start_station_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.startStationName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="end_station_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.endStationId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="end_station_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.endStationName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="merchant_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.merchantId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="first_arrive_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.firstArriveTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="created_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.createdAt,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="updated_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.updatedAt,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="deleted = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.deleted,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into work_order
+    (line_id, line_name, driver_id, vehicle_id, vehicle_number, real_start_time, predict_start_time, 
+      real_end_time, `status`, error_status, error_info, vehicle_plan_id, start_station_id, 
+      start_station_name, end_station_id, end_station_name, merchant_id, first_arrive_time, 
+      created_at, updated_at, deleted)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.lineId,jdbcType=INTEGER}, #{item.lineName,jdbcType=VARCHAR}, #{item.driverId,jdbcType=INTEGER}, 
+        #{item.vehicleId,jdbcType=INTEGER}, #{item.vehicleNumber,jdbcType=VARCHAR}, #{item.realStartTime,jdbcType=TIMESTAMP}, 
+        #{item.predictStartTime,jdbcType=TIMESTAMP}, #{item.realEndTime,jdbcType=TIMESTAMP}, 
+        #{item.status,jdbcType=SMALLINT}, #{item.errorStatus,jdbcType=SMALLINT}, #{item.errorInfo,jdbcType=VARCHAR}, 
+        #{item.vehiclePlanId,jdbcType=INTEGER}, #{item.startStationId,jdbcType=INTEGER}, 
+        #{item.startStationName,jdbcType=VARCHAR}, #{item.endStationId,jdbcType=INTEGER}, 
+        #{item.endStationName,jdbcType=VARCHAR}, #{item.merchantId,jdbcType=INTEGER}, #{item.firstArriveTime,jdbcType=TIMESTAMP}, 
+        #{item.createdAt,jdbcType=TIMESTAMP}, #{item.updatedAt,jdbcType=TIMESTAMP}, #{item.deleted,jdbcType=TINYINT}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="cn.liyu.model.WorkOrder" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into work_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      line_id,
+      line_name,
+      driver_id,
+      vehicle_id,
+      vehicle_number,
+      real_start_time,
+      predict_start_time,
+      real_end_time,
+      `status`,
+      error_status,
+      error_info,
+      vehicle_plan_id,
+      start_station_id,
+      start_station_name,
+      end_station_id,
+      end_station_name,
+      merchant_id,
+      first_arrive_time,
+      created_at,
+      updated_at,
+      deleted,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      #{lineId,jdbcType=INTEGER},
+      #{lineName,jdbcType=VARCHAR},
+      #{driverId,jdbcType=INTEGER},
+      #{vehicleId,jdbcType=INTEGER},
+      #{vehicleNumber,jdbcType=VARCHAR},
+      #{realStartTime,jdbcType=TIMESTAMP},
+      #{predictStartTime,jdbcType=TIMESTAMP},
+      #{realEndTime,jdbcType=TIMESTAMP},
+      #{status,jdbcType=SMALLINT},
+      #{errorStatus,jdbcType=SMALLINT},
+      #{errorInfo,jdbcType=VARCHAR},
+      #{vehiclePlanId,jdbcType=INTEGER},
+      #{startStationId,jdbcType=INTEGER},
+      #{startStationName,jdbcType=VARCHAR},
+      #{endStationId,jdbcType=INTEGER},
+      #{endStationName,jdbcType=VARCHAR},
+      #{merchantId,jdbcType=INTEGER},
+      #{firstArriveTime,jdbcType=TIMESTAMP},
+      #{createdAt,jdbcType=TIMESTAMP},
+      #{updatedAt,jdbcType=TIMESTAMP},
+      #{deleted,jdbcType=TINYINT},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      line_id = #{lineId,jdbcType=INTEGER},
+      line_name = #{lineName,jdbcType=VARCHAR},
+      driver_id = #{driverId,jdbcType=INTEGER},
+      vehicle_id = #{vehicleId,jdbcType=INTEGER},
+      vehicle_number = #{vehicleNumber,jdbcType=VARCHAR},
+      real_start_time = #{realStartTime,jdbcType=TIMESTAMP},
+      predict_start_time = #{predictStartTime,jdbcType=TIMESTAMP},
+      real_end_time = #{realEndTime,jdbcType=TIMESTAMP},
+      `status` = #{status,jdbcType=SMALLINT},
+      error_status = #{errorStatus,jdbcType=SMALLINT},
+      error_info = #{errorInfo,jdbcType=VARCHAR},
+      vehicle_plan_id = #{vehiclePlanId,jdbcType=INTEGER},
+      start_station_id = #{startStationId,jdbcType=INTEGER},
+      start_station_name = #{startStationName,jdbcType=VARCHAR},
+      end_station_id = #{endStationId,jdbcType=INTEGER},
+      end_station_name = #{endStationName,jdbcType=VARCHAR},
+      merchant_id = #{merchantId,jdbcType=INTEGER},
+      first_arrive_time = #{firstArriveTime,jdbcType=TIMESTAMP},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=TINYINT},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="cn.liyu.model.WorkOrder" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into work_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="lineId != null">
+        line_id,
+      </if>
+      <if test="lineName != null">
+        line_name,
+      </if>
+      <if test="driverId != null">
+        driver_id,
+      </if>
+      <if test="vehicleId != null">
+        vehicle_id,
+      </if>
+      <if test="vehicleNumber != null">
+        vehicle_number,
+      </if>
+      <if test="realStartTime != null">
+        real_start_time,
+      </if>
+      <if test="predictStartTime != null">
+        predict_start_time,
+      </if>
+      <if test="realEndTime != null">
+        real_end_time,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="errorStatus != null">
+        error_status,
+      </if>
+      <if test="errorInfo != null">
+        error_info,
+      </if>
+      <if test="vehiclePlanId != null">
+        vehicle_plan_id,
+      </if>
+      <if test="startStationId != null">
+        start_station_id,
+      </if>
+      <if test="startStationName != null">
+        start_station_name,
+      </if>
+      <if test="endStationId != null">
+        end_station_id,
+      </if>
+      <if test="endStationName != null">
+        end_station_name,
+      </if>
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="firstArriveTime != null">
+        first_arrive_time,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="lineId != null">
+        #{lineId,jdbcType=INTEGER},
+      </if>
+      <if test="lineName != null">
+        #{lineName,jdbcType=VARCHAR},
+      </if>
+      <if test="driverId != null">
+        #{driverId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleId != null">
+        #{vehicleId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleNumber != null">
+        #{vehicleNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="realStartTime != null">
+        #{realStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="predictStartTime != null">
+        #{predictStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realEndTime != null">
+        #{realEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="errorStatus != null">
+        #{errorStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="errorInfo != null">
+        #{errorInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="vehiclePlanId != null">
+        #{vehiclePlanId,jdbcType=INTEGER},
+      </if>
+      <if test="startStationId != null">
+        #{startStationId,jdbcType=INTEGER},
+      </if>
+      <if test="startStationName != null">
+        #{startStationName,jdbcType=VARCHAR},
+      </if>
+      <if test="endStationId != null">
+        #{endStationId,jdbcType=INTEGER},
+      </if>
+      <if test="endStationName != null">
+        #{endStationName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="firstArriveTime != null">
+        #{firstArriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="lineId != null">
+        line_id = #{lineId,jdbcType=INTEGER},
+      </if>
+      <if test="lineName != null">
+        line_name = #{lineName,jdbcType=VARCHAR},
+      </if>
+      <if test="driverId != null">
+        driver_id = #{driverId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleId != null">
+        vehicle_id = #{vehicleId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleNumber != null">
+        vehicle_number = #{vehicleNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="realStartTime != null">
+        real_start_time = #{realStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="predictStartTime != null">
+        predict_start_time = #{predictStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realEndTime != null">
+        real_end_time = #{realEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="errorStatus != null">
+        error_status = #{errorStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="errorInfo != null">
+        error_info = #{errorInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="vehiclePlanId != null">
+        vehicle_plan_id = #{vehiclePlanId,jdbcType=INTEGER},
+      </if>
+      <if test="startStationId != null">
+        start_station_id = #{startStationId,jdbcType=INTEGER},
+      </if>
+      <if test="startStationName != null">
+        start_station_name = #{startStationName,jdbcType=VARCHAR},
+      </if>
+      <if test="endStationId != null">
+        end_station_id = #{endStationId,jdbcType=INTEGER},
+      </if>
+      <if test="endStationName != null">
+        end_station_name = #{endStationName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="firstArriveTime != null">
+        first_arrive_time = #{firstArriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.liyu.mapper.CrowdFundingMapper">
+  <resultMap id="BaseResultMap" type="cn.liyu.model.CrowdFunding">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="passenger_id" jdbcType="INTEGER" property="passengerId" />
+    <result column="line_id" jdbcType="INTEGER" property="lineId" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="ticket_price" jdbcType="INTEGER" property="ticketPrice" />
+    <result column="head_account" jdbcType="INTEGER" property="headAccount" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="line_start_time" jdbcType="TIMESTAMP" property="lineStartTime" />
+    <result column="line_end_time" jdbcType="TIMESTAMP" property="lineEndTime" />
+    <result column="schedule_times" jdbcType="INTEGER" property="scheduleTimes" />
+    <result column="bus_load" jdbcType="INTEGER" property="busLoad" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="deleted" jdbcType="TINYINT" property="deleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, passenger_id, line_id, price, ticket_price, head_account, start_time, end_time, 
+    line_start_time, line_end_time, schedule_times, bus_load, `status`, created_at, updated_at, 
+    deleted
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update crowd_funding
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="passenger_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.passengerId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="line_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.lineId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="price = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.price,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="ticket_price = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.ticketPrice,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="head_account = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.headAccount,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="start_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.startTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="end_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.endTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="line_start_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.lineStartTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="line_end_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.lineEndTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="schedule_times = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.scheduleTimes,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="bus_load = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.busLoad,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.status,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="created_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.createdAt,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="updated_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.updatedAt,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="deleted = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.deleted,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into crowd_funding
+    (passenger_id, line_id, price, ticket_price, head_account, start_time, end_time, 
+      line_start_time, line_end_time, schedule_times, bus_load, `status`, created_at, 
+      updated_at, deleted)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.passengerId,jdbcType=INTEGER}, #{item.lineId,jdbcType=INTEGER}, #{item.price,jdbcType=INTEGER}, 
+        #{item.ticketPrice,jdbcType=INTEGER}, #{item.headAccount,jdbcType=INTEGER}, #{item.startTime,jdbcType=TIMESTAMP}, 
+        #{item.endTime,jdbcType=TIMESTAMP}, #{item.lineStartTime,jdbcType=TIMESTAMP}, #{item.lineEndTime,jdbcType=TIMESTAMP}, 
+        #{item.scheduleTimes,jdbcType=INTEGER}, #{item.busLoad,jdbcType=INTEGER}, #{item.status,jdbcType=TINYINT}, 
+        #{item.createdAt,jdbcType=TIMESTAMP}, #{item.updatedAt,jdbcType=TIMESTAMP}, #{item.deleted,jdbcType=TINYINT}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="cn.liyu.model.CrowdFunding" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into crowd_funding
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      passenger_id,
+      line_id,
+      price,
+      ticket_price,
+      head_account,
+      start_time,
+      end_time,
+      line_start_time,
+      line_end_time,
+      schedule_times,
+      bus_load,
+      `status`,
+      created_at,
+      updated_at,
+      deleted,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      #{passengerId,jdbcType=INTEGER},
+      #{lineId,jdbcType=INTEGER},
+      #{price,jdbcType=INTEGER},
+      #{ticketPrice,jdbcType=INTEGER},
+      #{headAccount,jdbcType=INTEGER},
+      #{startTime,jdbcType=TIMESTAMP},
+      #{endTime,jdbcType=TIMESTAMP},
+      #{lineStartTime,jdbcType=TIMESTAMP},
+      #{lineEndTime,jdbcType=TIMESTAMP},
+      #{scheduleTimes,jdbcType=INTEGER},
+      #{busLoad,jdbcType=INTEGER},
+      #{status,jdbcType=TINYINT},
+      #{createdAt,jdbcType=TIMESTAMP},
+      #{updatedAt,jdbcType=TIMESTAMP},
+      #{deleted,jdbcType=TINYINT},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      passenger_id = #{passengerId,jdbcType=INTEGER},
+      line_id = #{lineId,jdbcType=INTEGER},
+      price = #{price,jdbcType=INTEGER},
+      ticket_price = #{ticketPrice,jdbcType=INTEGER},
+      head_account = #{headAccount,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      line_start_time = #{lineStartTime,jdbcType=TIMESTAMP},
+      line_end_time = #{lineEndTime,jdbcType=TIMESTAMP},
+      schedule_times = #{scheduleTimes,jdbcType=INTEGER},
+      bus_load = #{busLoad,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=TINYINT},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=TINYINT},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="cn.liyu.model.CrowdFunding" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into crowd_funding
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="passengerId != null">
+        passenger_id,
+      </if>
+      <if test="lineId != null">
+        line_id,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="ticketPrice != null">
+        ticket_price,
+      </if>
+      <if test="headAccount != null">
+        head_account,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="lineStartTime != null">
+        line_start_time,
+      </if>
+      <if test="lineEndTime != null">
+        line_end_time,
+      </if>
+      <if test="scheduleTimes != null">
+        schedule_times,
+      </if>
+      <if test="busLoad != null">
+        bus_load,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="passengerId != null">
+        #{passengerId,jdbcType=INTEGER},
+      </if>
+      <if test="lineId != null">
+        #{lineId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="ticketPrice != null">
+        #{ticketPrice,jdbcType=INTEGER},
+      </if>
+      <if test="headAccount != null">
+        #{headAccount,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lineStartTime != null">
+        #{lineStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lineEndTime != null">
+        #{lineEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="scheduleTimes != null">
+        #{scheduleTimes,jdbcType=INTEGER},
+      </if>
+      <if test="busLoad != null">
+        #{busLoad,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="passengerId != null">
+        passenger_id = #{passengerId,jdbcType=INTEGER},
+      </if>
+      <if test="lineId != null">
+        line_id = #{lineId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="ticketPrice != null">
+        ticket_price = #{ticketPrice,jdbcType=INTEGER},
+      </if>
+      <if test="headAccount != null">
+        head_account = #{headAccount,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lineStartTime != null">
+        line_start_time = #{lineStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lineEndTime != null">
+        line_end_time = #{lineEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="scheduleTimes != null">
+        schedule_times = #{scheduleTimes,jdbcType=INTEGER},
+      </if>
+      <if test="busLoad != null">
+        bus_load = #{busLoad,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

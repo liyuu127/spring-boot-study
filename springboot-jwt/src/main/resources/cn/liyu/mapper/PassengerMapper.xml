@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.liyu.mapper.PassengerMapper">
+  <resultMap id="BaseResultMap" type="cn.liyu.model.Passenger">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="wx_open_id" jdbcType="VARCHAR" property="wxOpenId" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="deleted" jdbcType="TINYINT" property="deleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, phone_number, `status`, wx_open_id, `type`, last_login_time, created_at, updated_at, 
+    deleted
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update passenger
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="phone_number = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.phoneNumber,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.status,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="wx_open_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.wxOpenId,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`type` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.type,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="last_login_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.lastLoginTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="created_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.createdAt,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="updated_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.updatedAt,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="deleted = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.deleted,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into passenger
+    (phone_number, `status`, wx_open_id, `type`, last_login_time, created_at, updated_at, 
+      deleted)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.phoneNumber,jdbcType=VARCHAR}, #{item.status,jdbcType=TINYINT}, #{item.wxOpenId,jdbcType=VARCHAR}, 
+        #{item.type,jdbcType=TINYINT}, #{item.lastLoginTime,jdbcType=TIMESTAMP}, #{item.createdAt,jdbcType=TIMESTAMP}, 
+        #{item.updatedAt,jdbcType=TIMESTAMP}, #{item.deleted,jdbcType=TINYINT})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="cn.liyu.model.Passenger" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into passenger
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      phone_number,
+      `status`,
+      wx_open_id,
+      `type`,
+      last_login_time,
+      created_at,
+      updated_at,
+      deleted,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      #{phoneNumber,jdbcType=VARCHAR},
+      #{status,jdbcType=TINYINT},
+      #{wxOpenId,jdbcType=VARCHAR},
+      #{type,jdbcType=TINYINT},
+      #{lastLoginTime,jdbcType=TIMESTAMP},
+      #{createdAt,jdbcType=TIMESTAMP},
+      #{updatedAt,jdbcType=TIMESTAMP},
+      #{deleted,jdbcType=TINYINT},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=TINYINT},
+      wx_open_id = #{wxOpenId,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=TINYINT},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=TINYINT},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="cn.liyu.model.Passenger" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into passenger
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="phoneNumber != null">
+        phone_number,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="wxOpenId != null">
+        wx_open_id,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNumber != null">
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="wxOpenId != null">
+        #{wxOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNumber != null">
+        phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="wxOpenId != null">
+        wx_open_id = #{wxOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+
+<!--auto generated by MybatisCodeHelper on 2020-08-06-->
+  <select id="queryByInfo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from passenger
+    where 1=1
+    <if test="id != null">
+      and id=#{id,jdbcType=INTEGER}
+    </if>
+    <if test="phoneNumber != null">
+      and phone_number=#{phoneNumber,jdbcType=VARCHAR}
+    </if>
+    <if test="status != null">
+      and `status`=#{status,jdbcType=TINYINT}
+    </if>
+    <if test="wxOpenId != null">
+      and wx_open_id=#{wxOpenId,jdbcType=VARCHAR}
+    </if>
+    <if test="type != null">
+      and `type`=#{type,jdbcType=TINYINT}
+    </if>
+    <if test="lastLoginTime != null">
+      and last_login_time=#{lastLoginTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createdAt != null">
+      and created_at=#{createdAt,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatedAt != null">
+      and updated_at=#{updatedAt,jdbcType=TIMESTAMP}
+    </if>
+    <if test="deleted != null">
+      and deleted=#{deleted,jdbcType=TINYINT}
+    </if>
+  </select>
+
+
+</mapper>

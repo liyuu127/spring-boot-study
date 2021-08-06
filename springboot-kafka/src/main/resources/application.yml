@@ -14,3 +14,6 @@ kafka:
     my-topic: my-topic
     my-topic2: my-topic2
 
+
+test:
+  config: classpath

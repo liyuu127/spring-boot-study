@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.liyu.mapper.MerchantReconciliationMapper">
+  <resultMap id="BaseResultMap" type="cn.liyu.model.MerchantReconciliation">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pay_money" jdbcType="INTEGER" property="payMoney" />
+    <result column="pay_status" jdbcType="SMALLINT" property="payStatus" />
+    <result column="merchant_id" jdbcType="INTEGER" property="merchantId" />
+    <result column="merchant_name" jdbcType="VARCHAR" property="merchantName" />
+    <result column="line_id" jdbcType="INTEGER" property="lineId" />
+    <result column="receipt_status" jdbcType="TINYINT" property="receiptStatus" />
+    <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="deleted" jdbcType="TINYINT" property="deleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, pay_money, pay_status, merchant_id, merchant_name, line_id, receipt_status, remark, 
+    created_at, updated_at, deleted
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update merchant_reconciliation
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="pay_money = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.payMoney,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="pay_status = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.payStatus,jdbcType=SMALLINT}
+        </foreach>
+      </trim>
+      <trim prefix="merchant_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.merchantId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="merchant_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.merchantName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="line_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.lineId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="receipt_status = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.receiptStatus,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="remark = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.remark,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="created_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.createdAt,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="updated_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.updatedAt,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="deleted = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.deleted,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into merchant_reconciliation
+    (pay_money, pay_status, merchant_id, merchant_name, line_id, receipt_status, remark, 
+      created_at, updated_at, deleted)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.payMoney,jdbcType=INTEGER}, #{item.payStatus,jdbcType=SMALLINT}, #{item.merchantId,jdbcType=INTEGER}, 
+        #{item.merchantName,jdbcType=VARCHAR}, #{item.lineId,jdbcType=INTEGER}, #{item.receiptStatus,jdbcType=TINYINT}, 
+        #{item.remark,jdbcType=LONGVARCHAR}, #{item.createdAt,jdbcType=TIMESTAMP}, #{item.updatedAt,jdbcType=TIMESTAMP}, 
+        #{item.deleted,jdbcType=TINYINT})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="cn.liyu.model.MerchantReconciliation" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into merchant_reconciliation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      pay_money,
+      pay_status,
+      merchant_id,
+      merchant_name,
+      line_id,
+      receipt_status,
+      remark,
+      created_at,
+      updated_at,
+      deleted,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      #{payMoney,jdbcType=INTEGER},
+      #{payStatus,jdbcType=SMALLINT},
+      #{merchantId,jdbcType=INTEGER},
+      #{merchantName,jdbcType=VARCHAR},
+      #{lineId,jdbcType=INTEGER},
+      #{receiptStatus,jdbcType=TINYINT},
+      #{remark,jdbcType=LONGVARCHAR},
+      #{createdAt,jdbcType=TIMESTAMP},
+      #{updatedAt,jdbcType=TIMESTAMP},
+      #{deleted,jdbcType=TINYINT},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      pay_money = #{payMoney,jdbcType=INTEGER},
+      pay_status = #{payStatus,jdbcType=SMALLINT},
+      merchant_id = #{merchantId,jdbcType=INTEGER},
+      merchant_name = #{merchantName,jdbcType=VARCHAR},
+      line_id = #{lineId,jdbcType=INTEGER},
+      receipt_status = #{receiptStatus,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=LONGVARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=TINYINT},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="cn.liyu.model.MerchantReconciliation" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into merchant_reconciliation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="payMoney != null">
+        pay_money,
+      </if>
+      <if test="payStatus != null">
+        pay_status,
+      </if>
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="merchantName != null">
+        merchant_name,
+      </if>
+      <if test="lineId != null">
+        line_id,
+      </if>
+      <if test="receiptStatus != null">
+        receipt_status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="payMoney != null">
+        #{payMoney,jdbcType=INTEGER},
+      </if>
+      <if test="payStatus != null">
+        #{payStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantName != null">
+        #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="lineId != null">
+        #{lineId,jdbcType=INTEGER},
+      </if>
+      <if test="receiptStatus != null">
+        #{receiptStatus,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="payMoney != null">
+        pay_money = #{payMoney,jdbcType=INTEGER},
+      </if>
+      <if test="payStatus != null">
+        pay_status = #{payStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantName != null">
+        merchant_name = #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="lineId != null">
+        line_id = #{lineId,jdbcType=INTEGER},
+      </if>
+      <if test="receiptStatus != null">
+        receipt_status = #{receiptStatus,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

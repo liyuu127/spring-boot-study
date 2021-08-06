@@ -15,7 +15,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         // LogInterceptor apply to all URLs.
-        registry.addInterceptor(new LogInterceptor());
+//        registry.addInterceptor(new LogInterceptor());
 
         // Old Login url, no longer use.
         // Use OldURLInterceptor to redirect to a new URL.
