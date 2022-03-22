@@ -3,7 +3,7 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
-    <groupId>com.itmuch.dubbo</groupId>
+    <groupId>cn.liyu</groupId>
     <artifactId>spring-boot-dubbo-nacos</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
@@ -37,7 +37,7 @@
     </dependency>
 
     <dependency>
-      <groupId>com.itmuch.dubbo</groupId>
+      <groupId>cn.liyu</groupId>
       <artifactId>sample-api</artifactId>
     </dependency>
   </dependencies>
