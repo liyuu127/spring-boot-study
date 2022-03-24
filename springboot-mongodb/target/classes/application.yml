@@ -5,10 +5,9 @@ server:
 spring:
   data:
     mongodb:
-#      uri: mongodb://mongoadmin:secret@192.168.35.187:27017/test
-      host: 192.168.35.187
+      host: 192.168.253.129
       port: 27017
-      database: test
       authentication-database: admin
-      username: mongoadmin
-      password: secret
+      database: test
+      username: root
+      password: '123456' #注意是字符形式

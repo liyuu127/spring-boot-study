@@ -1,4 +1,4 @@
-package cn.liyu.config.controller;
+package cn.liyu.controller;
 
 import cn.liyu.dao.IUserDao;
 import cn.liyu.pojo.User;
