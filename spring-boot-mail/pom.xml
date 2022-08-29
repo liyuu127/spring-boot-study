@@ -39,7 +39,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.10</version>
+            <version>1.18.24</version>
         </dependency>
     </dependencies>
 
@@ -50,26 +50,26 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>0.4.13</version>
-                <configuration>
-                    <imageName>192.168.35.187:5000/${project.artifactId}:${project.version}
-                    </imageName>
-                    <baseImage>jdk1.8</baseImage>
-                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
-                    <resources>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <directory>${project.build.directory}
-                            </directory>
-                            <include>${project.build.finalName}.jar</include>
-                        </resource>
-                    </resources>
-                    <dockerHost>http://192.168.35.188:2375</dockerHost>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>com.spotify</groupId>-->
+<!--                <artifactId>docker-maven-plugin</artifactId>-->
+<!--                <version>0.4.13</version>-->
+<!--                <configuration>-->
+<!--                    <imageName>192.168.35.187:5000/${project.artifactId}:${project.version}-->
+<!--                    </imageName>-->
+<!--                    <baseImage>jdk1.8</baseImage>-->
+<!--                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>-->
+<!--                    <resources>-->
+<!--                        <resource>-->
+<!--                            <targetPath>/</targetPath>-->
+<!--                            <directory>${project.build.directory}-->
+<!--                            </directory>-->
+<!--                            <include>${project.build.finalName}.jar</include>-->
+<!--                        </resource>-->
+<!--                    </resources>-->
+<!--                    <dockerHost>http://192.168.35.188:2375</dockerHost>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
 
         </plugins>
     </build>
