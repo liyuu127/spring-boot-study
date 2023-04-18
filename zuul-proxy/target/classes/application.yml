@@ -1,0 +1,36 @@
+server:
+  port: 8888 #服务端口
+spring:
+  application:
+    name: app-zuul-gateway #指定服务名
+  cloud:
+    circuitbreaker:
+      hystrix:
+        enabled: false
+
+zuul:
+  #  方式一：path+serviceId
+  routes: #定义服务转发规则
+    abcs:
+      path: /test/**   #配置请求URL的请求规则
+      strip-prefix: true
+      url: http://127.0.0.1:8084/risk/history/info
+  host:
+    connect-timeout-millis: 30000
+    socket-timeout-millis: 30000
+  retryable: false
+  debug:
+    request: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+ribbon:
+  ReadTimeout: 30000
+  SocketTimeout: 30000
+logging:
+  level:
+    root: debug
