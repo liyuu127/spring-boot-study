@@ -15,6 +15,7 @@
         <module>springboot-mongodb</module>
         <module>spring-batch-start</module>
         <module>springboot-elasticsearch</module>
+        <module>zuul-proxy</module>
     </modules>
 
     <dependencies>
